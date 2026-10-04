@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Проектор"><ellipse cx="200" cy="306" rx="120" ry="12" fill="#cbd5e1" opacity=".55"/>
+<path d="M258 226 L372 150 L372 302Z" fill="#fde68a" opacity=".55"/>
+<rect x="60" y="184" width="216" height="100" rx="18" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="60" y="184" width="216" height="30" rx="15" fill="#2f6df6"/><rect x="60" y="200" width="216" height="14" fill="#2f6df6"/>
+<circle cx="214" cy="240" r="34" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="214" cy="240" r="22" fill="#1e3a8a"/><circle cx="206" cy="232" r="7" fill="#93c5fd"/>
+<path d="M86 236h62M86 252h62M86 268h62" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+<circle cx="90" cy="199" r="4" fill="#86efac"/>
+<rect x="84" y="284" width="26" height="14" rx="4" fill="#94a3b8"/><rect x="226" y="284" width="26" height="14" rx="4" fill="#94a3b8"/></svg>

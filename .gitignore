@@ -1,0 +1,6 @@
+config.php
+uploads/*/*
+!uploads/*/.gitkeep
+*.sqlite
+*.sqlite-*
+data/

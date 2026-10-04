@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Текстильний плоттер"><ellipse cx="200" cy="336" rx="150" ry="12" fill="#cbd5e1" opacity=".55"/>
+<path d="M92 214 L92 330 M308 214 L308 330 M72 332h44 M284 332h44 M92 292h216" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
+<path d="M112 300 Q200 334 288 300" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+<path d="M104 190 L104 280 Q138 270 172 280 T240 280 L240 190Z" fill="#fde68a" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="140" cy="228" r="12" fill="#f472b6"/><circle cx="176" cy="246" r="12" fill="#2f6df6"/><circle cx="208" cy="222" r="12" fill="#34d399"/>
+<rect x="56" y="126" width="288" height="92" rx="16" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="56" y="126" width="288" height="36" rx="16" fill="#2f6df6"/><rect x="56" y="146" width="288" height="16" fill="#2f6df6"/>
+<rect x="84" y="182" width="170" height="12" rx="6" fill="#1e3a8a"/>
+<rect x="276" y="174" width="48" height="30" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="290" cy="189" r="4" fill="#86efac"/><rect x="300" y="185" width="16" height="8" rx="4" fill="#93c5fd"/></svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Вакуумний термопрес"><ellipse cx="200" cy="336" rx="140" ry="12" fill="#cbd5e1" opacity=".55"/>
+<rect x="76" y="210" width="248" height="118" rx="14" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="96" y="232" width="124" height="74" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="112" y="252" width="38" height="34" rx="6" fill="#93c5fd"/><circle cx="184" cy="268" r="17" fill="#fde68a" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="240" y="232" width="66" height="34" rx="6" fill="#1e3a8a"/><rect x="248" y="242" width="30" height="12" rx="3" fill="#fca5a5"/>
+<circle cx="256" cy="290" r="11" fill="#94a3b8"/><circle cx="290" cy="290" r="11" fill="#86efac"/>
+<path d="M84 210 Q84 96 200 96 Q316 96 316 210Z" fill="#2f6df6"/>
+<path d="M120 196 Q124 132 196 124" fill="none" stroke="#93c5fd" stroke-width="7" stroke-linecap="round"/>
+<rect x="176" y="78" width="48" height="22" rx="11" fill="#1e3a8a"/></svg>

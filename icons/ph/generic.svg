@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Обладнання"><rect width="400" height="400" fill="#f4f6fa"/><ellipse cx="200" cy="336" rx="130" ry="13" fill="#cbd5e1" opacity=".55"/>
+<path d="M200 96 L318 150 V270 L200 324 L82 270 V150Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M200 96 L318 150 L200 204 L82 150Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M200 204 V324" stroke="#94a3b8" stroke-width="3"/>
+<path d="M82 150 L200 204 V324 L82 270Z" fill="#2f6df6" opacity=".18"/>
+<rect x="224" y="236" width="56" height="12" rx="6" fill="#2f6df6" transform="rotate(-24 252 242)"/></svg>

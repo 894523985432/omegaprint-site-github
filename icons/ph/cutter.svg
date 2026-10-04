@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Різак для паперу"><rect width="400" height="400" fill="#f4f6fa"/><ellipse cx="200" cy="336" rx="130" ry="13" fill="#cbd5e1" opacity=".55"/>
+<rect x="70" y="246" width="260" height="52" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<g stroke="#94a3b8" stroke-width="2"><path d="M92 246v10"/><path d="M114 246v10"/><path d="M136 246v10"/><path d="M158 246v10"/><path d="M180 246v10"/><path d="M202 246v10"/><path d="M224 246v10"/><path d="M246 246v10"/><path d="M268 246v10"/><path d="M290 246v10"/><path d="M312 246v10"/></g>
+<path d="M100 244 L300 168 L330 178 L130 252Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M98 240 L296 164" stroke="#2f6df6" stroke-width="14" stroke-linecap="round"/>
+<circle cx="300" cy="168" r="18" fill="#1e3a8a"/><circle cx="300" cy="168" r="7" fill="#e2e8f0"/>
+<rect x="84" y="226" width="16" height="30" rx="4" fill="#94a3b8"/></svg>

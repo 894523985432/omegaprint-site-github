@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /nakladna.html
+Disallow: /account.html
+Disallow: /tray.html
+Disallow: /placing_an_order.html
+Disallow: /review.html
+Disallow: /api/
+Disallow: /auth.php
+Disallow: /send-to-telegram.php
+Disallow: /*?q=
+Disallow: /*&q=
+
+Sitemap: https://omegaprint.com.ua/sitemap.xml

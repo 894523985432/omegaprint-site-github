@@ -1,0 +1,106 @@
+.fa, .fas, .far, .fab {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    font-style: normal;
+    background-color: currentColor;
+    -webkit-mask: var(--icon) center / contain no-repeat;
+            mask: var(--icon) center / contain no-repeat;
+}
+.fa::before, .fas::before, .far::before, .fab::before { content: none !important; }
+.fa-lg { font-size: 1.3333em; line-height: 0.75em; vertical-align: -0.2em; }
+
+.fa-chevron-down   { --icon: url(chevron-down.svg); }
+.fa-chevron-up     { --icon: url(chevron-up.svg); }
+.fa-angle-right    { --icon: url(chevron-right.svg); }
+.fa-check          { --icon: url(check.svg); }
+.fa-times          { --icon: url(x.svg); }
+.fa-times-circle   { --icon: url(circle-x.svg); }
+.fa-check-circle   { --icon: url(circle-check.svg); }
+.fa-twitter        { --icon: url(brand-twitter.svg); }
+.fa-telegram       { --icon: url(brand-telegram.svg); }
+.fa-instagram      { --icon: url(brand-instagram.svg); }
+.fa-facebook-f     { --icon: url(brand-facebook.svg); }
+.fa-arrow-right    { --icon: url(arrow-right.svg); }
+.fa-star           { --icon: url(star-filled.svg); }
+.fa-shopping-cart  { --icon: url(shopping-cart.svg); }
+.fa-search         { --icon: url(search.svg); }
+.fa-globe          { --icon: url(world.svg); }
+.fa-user           { --icon: url(user.svg); }
+.fa-bars           { --icon: url(menu-2.svg); }
+.fa-clock          { --icon: url(clock.svg); }
+.fa-university     { --icon: url(building-bank.svg); }
+.fa-shield-alt     { --icon: url(shield.svg); }
+.fa-filter         { --icon: url(filter.svg); }
+.fa-file-alt       { --icon: url(file-text.svg); }
+.fa-exclamation    { --icon: url(exclamation-mark.svg); }
+.fa-credit-card    { --icon: url(credit-card.svg); }
+.fa-calendar       { --icon: url(calendar.svg); }
+.fa-brush          { --icon: url(brush.svg); }
+.filter_clear .fa-brush { --icon: url(filter-off.svg); }
+.fa-briefcase      { --icon: url(briefcase.svg); }
+
+.down::after,
+.nav_page p a::after,
+.nav_page ul li:not(:last-child)::after,
+.item_status h6::before,
+.checkbox:checked + label::after,
+#comment .category_block .category:hover + label::after,
+#comment .category_block .category:checked + label::after,
+.answer_comment::before,
+.admin .client_name::before,
+.check_call .check_radio .item_check + label::after,
+.check_write .check_radio .item_check + label::after,
+.serch_service #serch_s + label:before,
+.devices-small .serch_devaces #serch_input + label:before {
+    content: "" !important;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    background-color: currentColor;
+    -webkit-mask: var(--icon) center / contain no-repeat;
+            mask: var(--icon) center / contain no-repeat;
+}
+.down::after                                      { --icon: url(chevron-down.svg); }
+.nav_page p a::after,
+.nav_page ul li:not(:last-child)::after           { --icon: url(chevron-right.svg); }
+.item_status h6::before                           { --icon: url(circle-filled.svg); }
+.checkbox:checked + label::after,
+.check_call .check_radio .item_check + label::after,
+.check_write .check_radio .item_check + label::after { --icon: url(check.svg); }
+#comment .category_block .category:hover + label::after,
+#comment .category_block .category:checked + label::after,
+.admin .client_name::before                       { --icon: url(circle-check-filled.svg); }
+.answer_comment::before                           { --icon: url(arrow-back-up.svg); }
+.serch_service #serch_s + label:before,
+.devices-small .serch_devaces #serch_input + label:before { --icon: url(search.svg); }
+
+.repairs > li:nth-child(1)::before { background: currentColor; -webkit-mask: url(tool.svg) center / contain no-repeat; mask: url(tool.svg) center / contain no-repeat; color: #008aff; }
+.repairs > li:nth-child(2)::before { background: currentColor; -webkit-mask: url(printer.svg) center / contain no-repeat; mask: url(printer.svg) center / contain no-repeat; color: #008aff; width: 20px; }
+.fa-phone-tel::before,
+.fa-phone-vodofon::before,
+.fa-phone-sm::before { background: #008aff; -webkit-mask: url(phone.svg) center / contain no-repeat; mask: url(phone.svg) center / contain no-repeat; }
+.fa-phone-vodofon::before,
+.fa-phone-sm::before { -webkit-mask-image: url(device-mobile.svg); mask-image: url(device-mobile.svg); }
+.icon { background: #008aff; -webkit-mask: url(phone.svg) center / contain no-repeat; mask: url(phone.svg) center / contain no-repeat; }
+
+.send, .about_info, #cart-service .help_service { background-image: url(palette-decor.svg); }
+.modal-content { background-image: none; }
+#call_back .modal_bg, .gallary_item::after { background-image: none; }
+
+.down::after { padding-left: 0; margin-left: 5px; align-self: center; }
+
+.slick-prev::before,
+.slick-next::before {
+    content: "" !important;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    background-color: currentColor;
+    -webkit-mask: url(chevron-left.svg) center / contain no-repeat;
+            mask: url(chevron-left.svg) center / contain no-repeat;
+}
+.slick-next::before { -webkit-mask-image: url(chevron-right.svg); mask-image: url(chevron-right.svg); }

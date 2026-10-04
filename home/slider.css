@@ -1,0 +1,161 @@
+.slider{
+    margin-left: 75px;
+    max-height: 335px;
+}
+
+.slider .slider_item img{
+    display: block;
+    max-width: 100%;
+    max-height: 370px;
+}
+
+.slider .slider_item{
+    height: 280px;
+}
+
+.slider-nav{
+    float: left;
+    width: 65px;
+}
+
+.slider img{ 
+    height: 100%;
+    margin: 0 auto;
+}
+
+.product .slider .slick-slide{
+    display: table;
+    height: 370px;
+}
+
+.product .slider-nav{
+    position: relative;
+    top: 10px;
+}
+
+.slider-buttom .slick-next{
+    margin: 0 !important;
+}
+
+.slider-buttom .slick-prev{
+    left: -60px !important;
+}
+
+
+.slider-nav_item img{
+    opacity: 0.4;
+}
+
+.slider-nav_item img:hover{
+    opacity: 1;
+}
+
+.product .slick-prev{
+    left: inherit;
+}
+
+.product .slick-prev, .product .slick-next{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 50px;
+    z-index: 999; 
+
+}
+
+.slider-nav .slick-prev::before, .slider-nav .slick-next::before{
+    color: #cccccc;
+}
+
+.slick-prev:hover::before, .slick-next:hover::before{
+    color: #008aff;
+}
+
+.product .slider-nav .slick-prev, .product .slider-nav .slick-next{ 
+    transform: rotate(90deg); 
+    position: relative;
+    left: 7px;
+}
+
+.product .slider-nav .slick-next{
+    top: 0;
+}
+
+.product .slider-nav .slick-prev{
+    bottom: 0;
+}
+
+.product .slick-next{
+    right: -55px;
+}
+
+.slider-nav .slider-nav_item{
+    height: 100%;
+}
+
+.slider-nav .slider-nav_item img{
+    display: block;
+    max-width: 100%;
+}
+
+.slider-buttom{
+    width: 100%;
+}
+
+.product .slider-buttom .slick-prev, .product .slider-buttom .slick-next{
+    left: unset;
+    position: absolute;
+    transform: none;
+    top: inherit;
+}
+
+
+
+.product .slider-buttom .slick-slide{
+    width: 65px !important;
+    height: 65px;
+}
+
+
+.product .slider-buttom{
+    top: 0;
+    width: 70%;
+    left: 15%;
+}
+
+
+
+
+@media (max-width: 1200px){
+    .slider{
+        margin: 0 !important;
+        max-width: 100%;
+        max-height: 300px;
+    }
+}
+
+@media (min-width: 1200px){
+    .slider-buttom{
+        display: none;
+    }
+}
+
+
+/*.slick-next, .slick-prev{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.5) url(chevron-right-solid.svg) no-repeat;
+    background-size: 16px auto;
+    z-index: 999;
+    top: 50%;
+}
+
+.slick-prev{
+    background: rgba(255, 255, 255, 0.5) url(chevron-left-solid.svg) no-repeat;
+    background-size: 16px auto;
+    fill: aqua;
+}
+
+.slick-prev:before, .slick-next:before{
+    display: none;*/

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Знищувач документів"><rect width="400" height="400" fill="#f4f6fa"/><ellipse cx="200" cy="336" rx="130" ry="13" fill="#cbd5e1" opacity=".55"/>
+<rect x="140" y="196" width="120" height="136" rx="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="156" y="226" width="88" height="70" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="116" y="124" width="168" height="76" rx="14" fill="#2f6df6"/>
+<rect x="136" y="150" width="128" height="12" rx="6" fill="#1e3a8a"/>
+<circle cx="258" cy="182" r="5" fill="#86efac"/>
+<path d="M156 150 L168 74 L238 74 L226 150Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M176 92h48M174 106h48M172 120h48" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+<circle cx="156" cy="336" r="9" fill="#94a3b8"/><circle cx="244" cy="336" r="9" fill="#94a3b8"/></svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Заклепочник для люверсів"><rect width="400" height="400" fill="#f4f6fa"/><ellipse cx="200" cy="336" rx="130" ry="13" fill="#cbd5e1" opacity=".55"/>
+<rect x="96" y="278" width="208" height="40" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M150 278 V170 Q150 140 180 140 H250 Q290 140 290 176 V210" fill="none" stroke="#2f6df6" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="272" y="206" width="36" height="72" rx="8" fill="#1e3a8a"/>
+<path d="M170 144 L128 96" stroke="#94a3b8" stroke-width="16" stroke-linecap="round"/>
+<circle cx="204" cy="298" r="12" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="204" cy="298" r="5" fill="#f4f6fa"/></svg>

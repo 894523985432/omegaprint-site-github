@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Сканер"><ellipse cx="200" cy="306" rx="150" ry="12" fill="#cbd5e1" opacity=".55"/>
+<path d="M70 232 L96 108 L318 108 L330 232Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M112 128 L302 128 L310 214 L98 214Z" fill="#e2e8f0"/>
+<rect x="56" y="232" width="288" height="66" rx="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="56" y="232" width="288" height="24" rx="12" fill="#2f6df6"/><rect x="56" y="244" width="288" height="12" fill="#2f6df6"/>
+<path d="M84 244 h210" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
+<circle cx="300" cy="278" r="6" fill="#86efac"/><circle cx="320" cy="278" r="6" fill="#94a3b8"/>
+<path d="M150 190 L196 150 L250 196" fill="none" stroke="#93c5fd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="246" cy="152" r="9" fill="#93c5fd"/></svg>

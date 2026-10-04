@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Факс"><ellipse cx="200" cy="318" rx="150" ry="12" fill="#cbd5e1" opacity=".55"/>
+<path d="M176 176 L190 84 L296 84 L310 176Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M206 106h74M204 124h78M202 142h82" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+<path d="M60 196 Q60 176 80 176 L320 176 Q340 176 340 196 L346 296 Q346 310 332 310 L68 310 Q54 310 54 296Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="74" y="160" width="62" height="130" rx="22" fill="#2f6df6"/><rect x="88" y="180" width="34" height="90" rx="14" fill="#1e3a8a"/>
+<rect x="164" y="196" width="150" height="26" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="176" y="205" width="70" height="8" rx="4" fill="#93c5fd"/>
+<g fill="#94a3b8"><circle cx="180" cy="246" r="7"/><circle cx="206" cy="246" r="7"/><circle cx="232" cy="246" r="7"/><circle cx="180" cy="270" r="7"/><circle cx="206" cy="270" r="7"/><circle cx="232" cy="270" r="7"/><circle cx="180" cy="294" r="6"/><circle cx="206" cy="294" r="6"/><circle cx="232" cy="294" r="6"/></g>
+<rect x="262" y="238" width="52" height="22" rx="8" fill="#2f6df6"/><circle cx="288" cy="282" r="12" fill="#86efac"/></svg>

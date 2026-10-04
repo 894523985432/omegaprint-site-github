@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Копіювальна техніка"><ellipse cx="200" cy="336" rx="140" ry="12" fill="#cbd5e1" opacity=".55"/>
+<rect x="96" y="196" width="208" height="136" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="112" y="236" width="176" height="24" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="112" y="272" width="176" height="24" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="180" y="244" width="40" height="7" rx="3.5" fill="#94a3b8"/><rect x="180" y="280" width="40" height="7" rx="3.5" fill="#94a3b8"/>
+<rect x="84" y="150" width="232" height="50" rx="10" fill="#2f6df6"/>
+<rect x="250" y="162" width="52" height="26" rx="5" fill="#1e3a8a"/><circle cx="262" cy="175" r="4" fill="#86efac"/><rect x="272" y="171" width="22" height="8" rx="4" fill="#93c5fd"/>
+<path d="M100 150 L116 112 L250 112 L266 150Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M128 112 L140 86 L226 86 L238 112Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M150 98h66" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+<path d="M60 216 L96 208 L96 226 L60 232Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="116" cy="336" r="8" fill="#94a3b8"/><circle cx="284" cy="336" r="8" fill="#94a3b8"/></svg>

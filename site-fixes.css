@@ -1,0 +1,16 @@
+.cart_control .cart_empty { margin: 0; padding: 16px 20px; color: #777; }
+
+.footer_about_text,
+.footer_block li,
+.footer_address { text-align: left; }
+
+.icon_social i { margin: 0 auto; }
+
+.question_item { padding-right: 16px; }
+.question_item p { padding: 12px 0; margin: 0; }
+.question_item i { width: 16px; }
+
+.slick-loading .slick-list { background: #fff; }
+
+.control .profile_control { min-width: 170px; }
+.control .control_item .lang a { line-height: 30px; white-space: nowrap; }

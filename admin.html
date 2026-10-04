@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Адмін-панель | OmegaPrint</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="admin.css?v=11" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="brand"><img src="logo.svg" alt="OmegaPrint" width="128" height="32"><span>Адмін-панель</span></a>
+    <div class="topbar_user" id="userBox" hidden>
+        <span id="userName"></span>
+        <a href="shop.html" target="_blank" rel="noopener">Відкрити магазин</a>
+        <button type="button" class="link" id="logoutBtn">Вийти</button>
+    </div>
+</header>
+
+<main class="wrap">
+    
+    <section id="loginView" class="card login" hidden>
+        <h1>Вхід для адміністратора</h1>
+        <p class="muted" id="loginHint">Увійдіть обліковим записом, email якого вказано в <code>admin_emails</code> у config.php.</p>
+        <form id="loginForm" novalidate>
+            <label>Email<input type="email" name="Signin[email]" autocomplete="username" required></label>
+            <label>Пароль<input type="password" name="Signin[password_hash]" autocomplete="current-password" required></label>
+            <p class="error" id="loginError" role="alert"></p>
+            <button type="submit" class="btn primary">Увійти</button>
+        </form>
+    </section>
+
+    
+    <section id="appView" hidden>
+        <nav class="tabs" role="tablist">
+            <button type="button" role="tab" class="tab" data-tab="orders" aria-selected="false">Замовлення <span class="tab_count" id="ordersNewCount" hidden></span></button>
+            <button type="button" role="tab" class="tab active" data-tab="repairs" aria-selected="true">Ремонти</button>
+            <button type="button" role="tab" class="tab" data-tab="statuses" aria-selected="false">Статуси ремонтів</button>
+            <button type="button" role="tab" class="tab" data-tab="services" aria-selected="false">Послуги</button>
+            <button type="button" role="tab" class="tab" data-tab="products" aria-selected="false">Товари</button>
+            <button type="button" role="tab" class="tab" data-tab="categories" aria-selected="false">Категорії</button>
+            <button type="button" role="tab" class="tab" data-tab="specs" aria-selected="false">Характеристики</button>
+            <button type="button" role="tab" class="tab" data-tab="import" aria-selected="false">Імпорт</button>
+            <button type="button" role="tab" class="tab" data-tab="search" aria-selected="false">Пошук</button>
+            <button type="button" role="tab" class="tab" data-tab="clients" aria-selected="false">Клієнти</button>
+            <button type="button" role="tab" class="tab" data-tab="reviews" aria-selected="false">Відгуки <span class="tab_count" id="reviewsNewCount" hidden></span></button>
+            <button type="button" role="tab" class="tab" data-tab="sms" aria-selected="false">SMS</button>
+        </nav>
+
+        
+        <div class="panel" id="tab-orders" hidden>
+            <div class="toolbar">
+                <input type="search" id="orderSearch" placeholder="Пошук: №, ім'я, телефон, email" aria-label="Пошук замовлень">
+            </div>
+            <div class="status_chips" id="orderChips"></div>
+            <div class="table_wrap">
+                <table class="table">
+                    <thead><tr><th>№</th><th>Дата</th><th>Клієнт</th><th>Доставка / оплата</th><th class="num">Сума, грн</th><th>Статус</th></tr></thead>
+                    <tbody id="orderRows"></tbody>
+                </table>
+            </div>
+            <div class="pager" id="orderPager"></div>
+        </div>
+
+        
+        <div class="panel" id="tab-clients" hidden>
+            <div class="toolbar">
+                <input type="search" id="clientSearch" placeholder="Пошук: ім'я, телефон, email, організація" aria-label="Пошук клієнтів">
+                <a class="btn" id="clientExport" href="api/clients.php?action=export">⬇ Експорт у Excel (CSV)</a>
+            </div>
+            <div class="status_chips" id="clientChips"></div>
+            <div class="ban_box" id="banBox" hidden>
+                <h3>Заблоковані адреси</h3>
+                <p class="muted">Мережі, з яких намагались зареєструвати понад 10 акаунтів: з них не можна реєструватись, входити, оформлювати замовлення й надсилати заявки. Адреси не зберігаються — лише код і список акаунтів, зареєстрованих з цієї мережі.</p>
+                <div id="banRows"></div>
+            </div>
+            <p class="muted small_note"><span style="font-size: 20px;">
+				Категорія за кількістю замовлень (магазин і ремонти): новий — 1 замовлення;<br>
+				далі — за останні 90 днів: <br>
+				рідкісний 1–3<br>
+                регулярний 4–6<br>
+				постійний 7–12<br>
+				VIP — понад 12<br>
+				Хто не замовляв 90 днів — неактивний<br>
+				Скасовані замовлення не враховуються.</span></p>
+            <div class="table_wrap">
+                <table class="table">
+                    <thead><tr><th>Клієнт</th><th>Контакти</th><th>Категорія</th><th class="num">Замовлень<br><small>усього / квартал</small></th><th class="num">Середній чек</th><th class="num">Сума</th><th>Останнє</th></tr></thead>
+                    <tbody id="clientRows"></tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        <div class="panel" id="tab-reviews" hidden>
+            <div class="status_chips" id="reviewChips"></div>
+            <div id="reviewRows" class="review_admin_list"></div>
+        </div>
+
+        
+        <div class="panel" id="tab-sms" hidden>
+            <div class="notice" id="smsNotice" hidden></div>
+            <p class="muted">SMS з проханням залишити відгук надсилається автоматично, коли замовлення магазину отримує статус «Виконано»,
+                а замовлення на ремонт — статус з позначкою «Просити відгук» (вкладка «Статуси ремонтів»). Кожному замовленню — один раз.</p>
+            <div class="table_wrap">
+                <table class="table">
+                    <thead><tr><th>Дата</th><th>Номер</th><th>Текст</th><th>Замовлення</th><th>Стан</th></tr></thead>
+                    <tbody id="smsRows"></tbody>
+                </table>
+            </div>
+        </div>
+
+        
+        <div class="panel" id="tab-repairs">
+            <div id="repairList">
+                <div class="notice" id="noStatusesNotice" hidden>
+                    Спочатку створіть статуси замовлень (наприклад: «Прийнято», «Діагностика», «В роботі», «Готово», «Видано»).
+                    <button type="button" class="btn small primary" id="goStatusesBtn">Створити статуси</button>
+                </div>
+                <div class="toolbar">
+                    <input type="search" id="repairSearch" placeholder="Пошук: №, клієнт, телефон, пристрій, серійний номер" aria-label="Пошук замовлень">
+                    <button type="button" class="btn primary" id="addRepairBtn">+ Нове замовлення</button>
+                </div>
+                <div class="status_chips" id="statusChips" role="group" aria-label="Фільтр за статусом"></div>
+                <div class="table_wrap">
+                    <table class="table repairs_table">
+                        <thead><tr><th>№</th><th>Створено</th><th>Клієнт</th><th>Пристрій</th><th>Статус</th><th class="num">Сума, грн</th><th>Термін</th></tr></thead>
+                        <tbody id="repairRows"></tbody>
+                    </table>
+                </div>
+                <div class="pager" id="repairPager"></div>
+            </div>
+
+            
+            <div id="repairView" hidden>
+                <div class="repair_head">
+                    <button type="button" class="btn" id="repairBack">← До списку</button>
+                    <h2 id="repairTitle">Замовлення</h2>
+                    <span class="badge" id="repairSource" hidden>з сайту</span>
+                    <div class="grow"></div>
+                    <label class="inline_label" id="repairStatusBox">Статус
+                        <select id="repairStatus" aria-label="Статус замовлення"></select>
+                    </label>
+                    <button type="button" class="btn" id="repairPrint">Друк накладної</button>
+                    <button type="button" class="btn danger" id="repairDelete">Видалити</button>
+                </div>
+                <p class="muted" id="repairMeta"></p>
+
+                <div class="repair_grid">
+                    <div class="repair_main">
+                        <form class="card" id="repairForm" novalidate>
+                            <h3>Клієнт і пристрій</h3>
+                            <input type="hidden" name="id">
+                            <div class="grid">
+                                <label>Відповідальна особа (ПІБ)<input type="text" name="client_name" maxlength="120" autocomplete="off"><span class="field_error" data-for="client_name"></span></label>
+                                <label>Телефон<input type="tel" name="client_phone" maxlength="40" placeholder="+380 (__) ___-__-__" autocomplete="off"><span class="field_error" data-for="client_phone"></span></label>
+                                <label>Організація<input type="text" name="client_company" maxlength="200" placeholder="Для фізичної особи — не заповнювати" autocomplete="off"></label>
+                                <label>Код ЄДРПОУ<input type="text" name="edrpou" maxlength="10" inputmode="numeric" autocomplete="off"><span class="field_error" data-for="edrpou"></span></label>
+                                <div class="span2 field">
+                                    <span class="field_label">Месенджер для повідомлень</span>
+                                    <div class="segmented" role="radiogroup" aria-label="Месенджер">
+                                        <label><input type="radio" name="messenger" value="Viber"><span>Viber</span></label>
+                                        <label><input type="radio" name="messenger" value="Telegram"><span>Telegram</span></label>
+                                        <label><input type="radio" name="messenger" value="WhatsApp"><span>WhatsApp</span></label>
+                                        <label><input type="radio" name="messenger" value="немає"><span>Немає</span></label>
+                                    </div>
+                                    <span class="field_error" data-for="messenger"></span>
+                                </div>
+                                <label>Тип пристрою<input type="text" name="device_type" maxlength="120" placeholder="Оберіть або додайте" data-combo="device_type" autocomplete="off"><span class="field_error" data-for="device_type"></span></label>
+                                <label>Виробник<input type="text" name="device_brand" maxlength="120" placeholder="Оберіть або додайте" data-combo="device_brand" autocomplete="off"></label>
+                                <label>Модель<input type="text" name="device_model" maxlength="120" placeholder="Оберіть або введіть" data-combo="device_model" autocomplete="off"></label>
+                                <label>Серійний номер<input type="text" name="serial" maxlength="120" placeholder="Оберіть або введіть" data-combo="serial" autocomplete="off"></label>
+                                <label class="span2">Несправність зі слів клієнта<textarea name="malfunction" rows="3" maxlength="4000"></textarea></label>
+                                <label>Комплектація<input type="text" name="complectation" maxlength="1000" placeholder="Оберіть або додайте" data-combo="complectation" data-multi autocomplete="off"></label>
+                                <label>Зовнішній вигляд<input type="text" name="appearance" maxlength="1000" placeholder="Оберіть або додайте" data-combo="appearance" data-multi autocomplete="off"></label>
+                                <label>Орієнтовна вартість, грн<input type="text" name="estimate" inputmode="decimal"><span class="field_error" data-for="estimate"></span></label>
+                                <label>Передоплата, грн<input type="text" name="prepayment" inputmode="decimal"><span class="field_error" data-for="prepayment"></span></label>
+                                <label>Термін виконання<input type="date" name="due_date"><span class="field_error" data-for="due_date"></span></label>
+                                <label id="newStatusBox">Статус<select name="status_id"></select></label>
+                            </div>
+                            <p class="error" id="repairError" role="alert"></p>
+                            <div class="dialog_actions"><button type="submit" class="btn primary" id="repairSave">Зберегти</button></div>
+                        </form>
+
+                        <section class="card" id="repairItemsCard">
+                            <h3>Роботи та запчастини</h3>
+                            <div class="table_wrap">
+                                <table class="table items_table">
+                                    <thead><tr><th>Тип</th><th>Назва</th><th>Номер</th><th class="num">К-сть</th><th class="num">Ціна</th><th class="num">Сума</th><th></th></tr></thead>
+                                    <tbody id="itemRows"></tbody>
+                                </table>
+                            </div>
+                            <form class="item_form" id="itemForm" novalidate>
+                                <input type="hidden" name="id">
+                                <select name="kind" aria-label="Тип"><option value="work">Робота</option><option value="part">Запчастина</option></select>
+                                <input type="text" name="name" placeholder="Назва: оберіть або додайте" aria-label="Назва" maxlength="200" data-combo="work" autocomplete="off">
+                                <input type="text" name="code" placeholder="Номер / артикул" aria-label="Номер або артикул" maxlength="60" class="code" autocomplete="off">
+                                <input type="text" name="qty" value="1" inputmode="decimal" aria-label="Кількість" class="qty">
+                                <input type="text" name="price" placeholder="Ціна" inputmode="decimal" aria-label="Ціна" class="price">
+                                <button type="submit" class="btn primary" id="itemSubmit">Додати</button>
+                                <button type="button" class="btn" id="itemCancel" hidden>Скасувати</button>
+                            </form>
+                            <p class="error" id="itemError" role="alert"></p>
+                            <dl class="totals" id="repairTotals"></dl>
+                        </section>
+                    </div>
+
+                    <aside class="card chat" id="repairChat">
+                        <h3>Коментарі</h3>
+                        <div class="chat_log" id="chatLog" aria-live="polite"></div>
+                        <form id="commentForm" class="chat_form" novalidate>
+                            <textarea name="text" rows="2" placeholder="Коментар для адміністраторів… (Ctrl+Enter — надіслати)" aria-label="Коментар" maxlength="4000"></textarea>
+                            <button type="submit" class="btn primary">Надіслати</button>
+                        </form>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel" id="tab-statuses" hidden>
+            <div class="toolbar">
+                <p class="muted grow">Статуси, через які проходить замовлення. Статус «за замовчуванням» отримують нові замовлення і заявки з сайту. Статус «закриває замовлення» — для виданих або скасованих.</p>
+                <button type="button" class="btn primary" id="addStatusBtn">+ Додати статус</button>
+            </div>
+            <ul class="status_list" id="statusList"></ul>
+
+            <h3>Лічильники в шапці сайту</h3>
+            <p class="muted">«Відремонтовано» і «Заправлено» ростуть самі: кожне закрите замовлення з роботами додає одиницю до «Відремонтовано»,
+                а робота з назвою «Заправка…» — кількість картриджів до «Заправлено». Якщо частину робіт ви не вносите в адмін-панель, впишіть тут актуальні числа.</p>
+            <form id="countersForm" class="toolbar">
+                <label>Відремонтовано <input type="number" name="repaired" min="0" step="1" required></label>
+                <label>Заправлено <input type="number" name="refilled" min="0" step="1" required></label>
+                <button type="submit" class="btn primary">Зберегти</button>
+                <span class="muted" id="countersShown"></span>
+            </form>
+        </div>
+
+        
+        <div class="panel" id="tab-services" hidden>
+            <div class="toolbar">
+                <p class="muted grow">Розділи й підрозділи меню «Послуги». Кожна послуга має свою сторінку на сайті з описом, цінами, термінами і кнопками зв'язку.
+                    Інші тексти й фото сайту змінюються прямо на сторінках: відкрийте сайт і натисніть «✎ Редагувати сторінку» внизу зліва.</p>
+                <button type="button" class="btn primary" id="addServiceBtn">+ Додати розділ</button>
+            </div>
+            <ul class="cat_tree" id="serviceTree"></ul>
+        </div>
+
+        <div class="panel" id="tab-products" hidden>
+            <div class="toolbar">
+                <input type="search" id="productSearch" placeholder="Пошук за назвою або артикулом" aria-label="Пошук товарів">
+                <select id="productCat" aria-label="Категорія"><option value="">Усі категорії</option></select>
+                <button type="button" class="btn" id="productInfoBtn">Плашка «Оплата / Гарантія»</button>
+                <button type="button" class="btn primary" id="addProductBtn">+ Додати товар</button>
+            </div>
+            <p class="muted" id="productInfo"></p>
+            <div class="table_wrap">
+                <table class="table">
+                    <thead><tr><th>Фото</th><th>Назва</th><th>Категорія</th><th class="num">Ціна, грн</th><th>Наявність</th><th></th></tr></thead>
+                    <tbody id="productRows"></tbody>
+                </table>
+            </div>
+            <div class="pager" id="productPager"></div>
+        </div>
+
+        <div class="panel" id="tab-categories" hidden>
+            <div class="toolbar">
+                <p class="muted grow">Категорії з підкатегоріями. Кількість — товарів у категорії разом із підкатегоріями.</p>
+                <button type="button" class="btn primary" id="addCategoryBtn">+ Додати категорію</button>
+            </div>
+            <ul class="cat_tree" id="categoryTree"></ul>
+        </div>
+
+        <div class="panel" id="tab-search" hidden>
+            <h2 class="panel_title">Пошук по каталогу</h2>
+            <p class="muted">Пошук шукає в назві, артикулі, виробнику, категорії та характеристиках; слова можна писати в будь-якому порядку.
+                Латинські назви знаходяться й кирилицею («кобра» → Kobra), а набране не в тій розкладці виправляється саме.</p>
+            <p class="error" id="searchWarning" role="alert"></p>
+            <form id="synonymForm">
+                <label>Синоніми <small>— один рядок = одна група слів через кому. Досить початку слова: «гільйотин» знайде і «гільйотина», і «гільйотини».</small>
+                    <textarea name="text" rows="14" spellcheck="false"></textarea></label>
+                <div class="dialog_actions import_actions">
+                    <button type="submit" class="btn primary">Зберегти синоніми</button>
+                    <button type="button" class="btn" id="synonymReset">Повернути стандартні</button>
+                </div>
+            </form>
+            <h3>Перевірити запит</h3>
+            <div class="toolbar">
+                <input type="search" id="searchTest" placeholder="Наприклад: шредер кобра p-4">
+            </div>
+            <p class="muted" id="searchTestInfo"></p>
+            <div class="table_wrap">
+                <table class="table">
+                    <tbody id="searchTestRows"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel" id="tab-import" hidden>
+            <h2 class="panel_title">Імпорт прайсу</h2>
+            <p class="muted">Оновлює ціни й наявність та додає нові товари з файлу Excel (.xlsx) або CSV. Товари зіставляються за артикулом.
+                Файл читається у вашому браузері: на сервер потрапляють лише вибрані нижче колонки, решта (наприклад, закупівельні ціни) нікуди не надсилається.</p>
+            <label class="import_file">Файл прайсу<input type="file" id="importFile" accept=".xlsx,.csv,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></label>
+            <p class="muted" id="importBusy" hidden>Обробка…</p>
+
+            <div id="importSetup" hidden>
+                <p class="import_summary" id="importSummary"></p>
+
+                <h3>1. Колонки файлу</h3>
+                <div class="import_columns" id="importColumns"></div>
+
+                <h3>2. Розділи прайсу</h3>
+                <p class="muted">Ціни й наявність оновлюються в усіх товарах, які вже є в каталозі. Тут обирається лише, куди додавати <strong>нові</strong> товари кожного розділу.</p>
+                <div class="table_wrap import_sections_wrap">
+                    <table class="table">
+                        <thead><tr><th>Розділ у прайсі</th><th>Товарів</th><th>Уже є</th><th>Нових</th><th>Нові товари додавати в</th></tr></thead>
+                        <tbody id="importSections"></tbody>
+                    </table>
+                </div>
+                <label>Не додавати нові товари, назва яких починається з <small>(через кому — аксесуари, запчастини)</small>
+                    <textarea id="importExclude" rows="2"></textarea></label>
+
+                <h3>3. Що робити</h3>
+                <div class="import_options">
+                    <label class="check"><input type="checkbox" id="importPrice" role="switch" checked> Оновити ціни наявних товарів</label>
+                    <label class="check"><input type="checkbox" id="importAvail" role="switch" checked> Оновити наявність за залишком</label>
+                    <label class="check"><input type="checkbox" id="importAddNew" role="switch" checked> Додати нові товари</label>
+                    <label class="check"><input type="checkbox" id="importName" role="switch"> Оновити назви наявних товарів</label>
+                    <label class="check"><input type="checkbox" id="importAbsent" role="switch"> Товари, яких немає у файлі, позначити «Відсутній»</label>
+                    <label>Якщо залишок 0
+                        <select id="importZero">
+                            <option value="on_order">Під замовлення</option>
+                            <option value="absent">Відсутній</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="dialog_actions import_actions">
+                    <button type="button" class="btn" id="importCheck">Перевірити (нічого не змінює)</button>
+                    <button type="button" class="btn primary" id="importApply" disabled>Застосувати</button>
+                </div>
+
+                <div id="importResult" hidden>
+                    <h3 id="importResultTitle"></h3>
+                    <div class="import_stats" id="importStats"></div>
+                    <p class="muted" id="importSkipped"></p>
+                    <div class="table_wrap">
+                        <table class="table">
+                            <thead><tr><th>Зміна</th><th>Товар</th><th>Було</th><th>Стане</th></tr></thead>
+                            <tbody id="importChanges"></tbody>
+                        </table>
+                    </div>
+                    <p class="muted" id="importMore"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" id="tab-specs" hidden>
+            <div class="toolbar">
+                <select id="specCat" aria-label="Категорія"></select>
+                <p class="muted grow">Характеристики стають фільтрами в каталозі. Значення для кожного товару вводяться у формі товару.</p>
+                <button type="button" class="btn primary" id="addSpecBtn">+ Додати характеристику</button>
+            </div>
+            <div class="table_wrap">
+                <table class="table">
+                    <thead><tr><th>Назва</th><th>Категорія</th><th>Тип</th><th>Заповнено</th><th>Пояснення</th><th></th></tr></thead>
+                    <tbody id="specRows"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<dialog id="productDialog" aria-labelledby="productDialogTitle">
+    <form id="productForm" method="dialog" novalidate>
+        <h2 id="productDialogTitle">Товар</h2>
+        <input type="hidden" name="id">
+        <div class="grid">
+            <label class="span2">Назва *<input type="text" name="name" maxlength="200" required><span class="field_error" data-for="name"></span></label>
+            <label>Артикул<input type="text" name="sku" maxlength="50"><span class="field_error" data-for="sku"></span></label>
+            <label>Категорія<select name="category_id"></select><span class="field_error" data-for="category_id"></span></label>
+            <label>Ціна, грн *<input type="text" name="price" inputmode="decimal" required><span class="field_error" data-for="price"></span></label>
+            <label>Стара ціна, грн <small>(для знижки)</small><input type="text" name="old_price" inputmode="decimal"><span class="field_error" data-for="old_price"></span></label>
+            <div class="span2 field">
+                <span class="field_label">Наявність</span>
+                <div class="segmented" role="radiogroup" aria-label="Наявність">
+                    <label><input type="radio" name="availability" value="in_stock" checked><span>В наявності</span></label>
+                    <label><input type="radio" name="availability" value="on_order"><span>Під замовлення</span></label>
+                    <label><input type="radio" name="availability" value="absent"><span>Відсутній</span></label>
+                </div>
+            </div>
+            <label class="check span2"><input type="checkbox" name="popular" value="1" role="switch"> Показувати в «Популярних товарах» на головній</label>
+            <label class="span2">Опис<textarea name="description" rows="5"></textarea></label>
+            <fieldset class="span2 spec_fields" id="productSpecs" hidden>
+                <legend>Характеристики <small>(для фільтрів у каталозі)</small></legend>
+                <div class="grid" id="productSpecsGrid"></div>
+            </fieldset>
+            <div class="span2 photo_field">
+                <img id="photoPreview" src="icons/no-image.svg" alt="" width="96" height="96">
+                <div>
+                    <label>Фото (JPG, PNG, WEBP, до 5 МБ)<input type="file" name="image" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+                    <label class="check" id="removeImageRow" hidden><input type="checkbox" name="remove_image" value="1" role="switch"> Видалити фото</label>
+                    <span class="field_error" data-for="image"></span>
+                </div>
+            </div>
+        </div>
+        <p class="error" id="productError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+
+<dialog id="productInfoDialog" aria-labelledby="productInfoTitle">
+    <form id="productInfoForm" method="dialog" novalidate>
+        <h2 id="productInfoTitle">Плашка «Оплата / Гарантія»</h2>
+        <p class="muted">Показується на сторінці кожного товару. Порожнє поле приховує відповідну частину.</p>
+        <div class="grid">
+            <label class="span2">Оплата<textarea name="payment" rows="3" maxlength="400"></textarea></label>
+            <label class="span2">Гарантія<textarea name="warranty" rows="3" maxlength="400"></textarea></label>
+        </div>
+        <p class="error" id="productInfoError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="specDialog" aria-labelledby="specDialogTitle">
+    <form id="specForm" method="dialog" novalidate>
+        <h2 id="specDialogTitle">Характеристика</h2>
+        <input type="hidden" name="id">
+        <div class="grid">
+            <label class="span2">Назва *<input type="text" name="name" maxlength="80" required><span class="field_error" data-for="name"></span></label>
+            <label class="span2">Категорія <small>(діє і на підкатегорії)</small><select name="category_id"></select><span class="field_error" data-for="category_id"></span></label>
+            <label>Тип
+                <select name="type">
+                    <option value="enum">Значення зі списку (A3, A4…)</option>
+                    <option value="number">Число (фільтр «від–до»)</option>
+                    <option value="bool">Так / Ні</option>
+                </select>
+                <span class="field_error" data-for="type"></span>
+            </label>
+            <label>Одиниця виміру <small>(мм, кг, Вт…)</small><input type="text" name="unit" maxlength="20"><span class="field_error" data-for="unit"></span></label>
+            <label class="span2">Пояснення для покупця <small>(показується за кнопкою «?»)</small><textarea name="help" rows="4" maxlength="1000"></textarea><span class="field_error" data-for="help"></span></label>
+            <label>Порядок <small>(менше - вище)</small><input type="number" name="sort" value="0"></label>
+            <label class="check"><input type="checkbox" name="filterable" value="1" role="switch" checked> Показувати у фільтрах каталогу</label>
+        </div>
+        <p class="error" id="specError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="categoryDialog" aria-labelledby="categoryDialogTitle">
+    <form id="categoryForm" method="dialog" novalidate>
+        <h2 id="categoryDialogTitle">Категорія</h2>
+        <input type="hidden" name="id">
+        <label>Назва *<input type="text" name="name" maxlength="120" required><span class="field_error" data-for="name"></span></label>
+        <label>Батьківська категорія<select name="parent_id"></select><span class="field_error" data-for="parent_id"></span></label>
+        <label>Порядок у списку<input type="number" name="sort" value="0" step="1"></label>
+        <p class="error" id="categoryError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+
+<dialog id="serviceDialog" aria-labelledby="serviceDialogTitle">
+    <form id="serviceForm" method="dialog" novalidate>
+        <h2 id="serviceDialogTitle">Послуга</h2>
+        <input type="hidden" name="id">
+        <div class="grid">
+            <label class="span2">Назва *<input type="text" name="name" maxlength="150" required><span class="field_error" data-for="name"></span></label>
+            <label>Розділ<select name="parent_id"></select><span class="field_error" data-for="parent_id"></span></label>
+            <label>Порядок у списку<input type="number" name="sort" step="1" value="0"></label>
+            <label class="span2">Короткий опис <small>(для картки, до 300 символів)</small><textarea name="summary" rows="2" maxlength="300"></textarea><span class="field_error" data-for="summary"></span></label>
+            <label class="span2">Повний опис
+                <textarea name="description" rows="8"></textarea>
+                <small class="muted">Абзаци розділяйте порожнім рядком. Рядки, що починаються з «- », стануть списком з галочками.</small>
+                <span class="field_error" data-for="description"></span>
+            </label>
+            <label>Діагностика у разі відмови від ремонту, грн<input type="text" name="diag_price" inputmode="decimal" placeholder="Напр. 300"><small class="muted">При ремонті діагностика безкоштовна</small><span class="field_error" data-for="diag_price"></span></label>
+            <label>Ремонт — від, грн<input type="text" name="price_from" inputmode="decimal" placeholder="Напр. 500"><span class="field_error" data-for="price_from"></span></label>
+            <label class="span2">Терміни виконання<input type="text" name="term" maxlength="120" placeholder="Напр. 1–3 робочі дні"><span class="field_error" data-for="term"></span></label>
+            <div class="span2 field">
+                <span class="field_label">Ціни на роботи</span>
+                <div id="priceRows" class="price_rows"></div>
+                <button type="button" class="btn small" id="addPriceRow">+ Додати рядок</button>
+                <span class="field_error" data-for="prices"></span>
+            </div>
+            <div class="span2 photo_field">
+                <img id="servicePhoto" src="icons/no-image.svg" alt="" width="96" height="96">
+                <div>
+                    <label>Фото (JPG, PNG, WEBP, до 5 МБ)<input type="file" name="image" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+                    <label class="check" id="serviceRemoveImage" hidden><input type="checkbox" name="remove_image" value="1" role="switch"> Видалити фото</label>
+                    <span class="field_error" data-for="image"></span>
+                </div>
+            </div>
+            <label class="check span2"><input type="checkbox" name="visible" value="1" role="switch" checked> Показувати на сайті</label>
+        </div>
+        <p class="error" id="serviceError" role="alert"></p>
+        <div class="dialog_actions">
+            <a class="btn" id="serviceOpenLink" href="#" target="_blank" rel="noopener" hidden>Відкрити на сайті ↗</a>
+            <div class="grow"></div>
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+
+<dialog id="orderDialog" aria-labelledby="orderDialogTitle">
+    <div class="dialog_body">
+        <h2 id="orderDialogTitle">Замовлення</h2>
+        <div id="orderDetails"></div>
+        <div class="dialog_actions">
+            <button type="button" class="btn" id="orderSmsBtn">Надіслати SMS про відгук</button>
+            <div class="grow"></div>
+            <button type="button" class="btn" data-close>Закрити</button>
+        </div>
+    </div>
+</dialog>
+
+
+<dialog id="clientDialog" aria-labelledby="clientDialogTitle">
+    <form id="clientForm" method="dialog" novalidate>
+        <h2 id="clientDialogTitle">Клієнт</h2>
+        <div id="clientStats" class="client_stats"></div>
+        <input type="hidden" name="id">
+        <div class="grid">
+            <label>Ім'я<input type="text" name="name" maxlength="120"></label>
+            <label>Email<input type="email" name="email" maxlength="120"><span class="field_error" data-for="email"></span></label>
+            <label class="span2">Організація<input type="text" name="company" maxlength="200"></label>
+            <label class="span2">Примітки<textarea name="notes" rows="3" maxlength="4000"></textarea></label>
+        </div>
+        <h3 class="dialog_sub">Замовлення</h3>
+        <div id="clientOrders"></div>
+        <p class="error" id="clientError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn danger" id="clientDelete">Видалити клієнта</button>
+            <button type="button" class="btn" data-close>Закрити</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+
+<dialog id="statusDialog" aria-labelledby="statusDialogTitle">
+    <form id="statusForm" method="dialog" novalidate>
+        <h2 id="statusDialogTitle">Статус</h2>
+        <input type="hidden" name="id">
+        <label>Назва *<input type="text" name="name" maxlength="60" required><span class="field_error" data-for="name"></span></label>
+        <div class="color_field">
+            <span>Колір</span>
+            <div class="swatches" id="statusSwatches"></div>
+            <input type="color" name="color" value="#008aff" aria-label="Свій колір">
+            <span class="field_error" data-for="color"></span>
+        </div>
+        <label>Порядок у списку<input type="number" name="sort" step="1"></label>
+        <label class="check"><input type="checkbox" name="is_default" value="1" role="switch"> За замовчуванням для нових замовлень</label>
+        <label class="check"><input type="checkbox" name="is_closed" value="1" role="switch"> Закриває замовлення (видано, скасовано)</label>
+        <label class="check"><input type="checkbox" name="request_review" value="1" role="switch"> Просити відгук: надіслати клієнту SMS з посиланням на відгук</label>
+        <p class="error" id="statusError" role="alert"></p>
+        <div class="dialog_actions">
+            <button type="button" class="btn" data-close>Скасувати</button>
+            <button type="submit" class="btn primary">Зберегти</button>
+        </div>
+    </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="image-compress.js?v=1"></script>
+<script src="phone-mask.js?v=2"></script>
+<script src="admin.js?v=6"></script>
+<script src="admin-status.js?v=1"></script>
+<script src="admin-repairs.js?v=10"></script>
+<script src="admin-services.js?v=4"></script>
+<script src="admin-crm.js?v=6"></script>
+<script src="admin-specs.js?v=5"></script>
+<script src="sheet-read.js?v=1"></script>
+<script src="admin-import.js?v=2"></script>
+</body>
+</html>

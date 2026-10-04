@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Планшетний принтер"><ellipse cx="200" cy="336" rx="160" ry="12" fill="#cbd5e1" opacity=".55"/>
+<rect x="52" y="262" width="296" height="66" rx="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M40 262 L84 214 L316 214 L360 262Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M128 252 L146 226 L254 226 L272 252Z" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="182" cy="240" r="8" fill="#f472b6"/><circle cx="204" cy="238" r="8" fill="#2f6df6"/><circle cx="224" cy="242" r="8" fill="#34d399"/>
+<path d="M96 222 L96 150 Q96 134 112 134 L288 134 Q304 134 304 150 L304 222 L282 222 L282 172 L118 172 L118 222Z" fill="#2f6df6"/>
+<rect x="170" y="150" width="62" height="54" rx="8" fill="#1e3a8a"/><rect x="182" y="204" width="38" height="10" rx="3" fill="#94a3b8"/>
+<rect x="264" y="284" width="64" height="24" rx="6" fill="#1e3a8a"/><circle cx="278" cy="296" r="5" fill="#86efac"/><rect x="290" y="292" width="28" height="8" rx="4" fill="#93c5fd"/></svg>

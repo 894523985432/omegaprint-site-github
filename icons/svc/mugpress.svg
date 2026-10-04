@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Чашковий термопрес"><ellipse cx="200" cy="336" rx="150" ry="12" fill="#cbd5e1" opacity=".55"/>
+<rect x="64" y="262" width="272" height="66" rx="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="84" y="282" width="70" height="28" rx="6" fill="#1e3a8a"/><rect x="92" y="290" width="30" height="12" rx="3" fill="#fca5a5"/><circle cx="140" cy="296" r="5" fill="#86efac"/>
+<path d="M118 262 L118 170 Q118 150 138 150 L262 150 Q282 150 282 170 L282 262Z" fill="#2f6df6"/>
+<rect x="150" y="128" width="100" height="134" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M250 160 Q296 160 296 196 Q296 232 250 232" fill="none" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/>
+<circle cx="200" cy="186" r="20" fill="#fde68a"/><path d="M176 226h48" stroke="#93c5fd" stroke-width="6" stroke-linecap="round"/>
+<path d="M282 190 L336 132" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/><rect x="318" y="108" width="40" height="24" rx="12" fill="#1e3a8a"/></svg>

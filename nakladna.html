@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Накладна | OmegaPrint</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="nakladna.css?v=5" rel="stylesheet">
+</head>
+<body>
+
+<div class="toolbar no-print">
+    <div class="toolbar_inner">
+        <strong class="doc_title" id="docTitle">Накладна</strong>
+        <div class="grow"></div>
+        <div class="sides" role="radiogroup" aria-label="Що друкувати">
+            <label><input type="radio" name="side" value="both" checked><span>Обидві сторони</span></label>
+            <label><input type="radio" name="side" value="front"><span>Лицьова</span></label>
+            <label><input type="radio" name="side" value="back"><span>Зворотна</span></label>
+        </div>
+        <button type="button" class="btn" id="printBtn">🖨 Друкувати</button>
+    </div>
+    <div class="toolbar_hints">
+        <span>✎ Підсвічені поля заповнені автоматично — клацніть, щоб виправити. Квадратики техніки й месенджер перемикаються кліком.</span>
+        <span>Двосторонній друк: у діалозі друку — «Двосторонній, переворот по короткому краю», папір A5, масштаб 100%.</span>
+    </div>
+</div>
+
+<p class="message no-print" id="message">Завантаження…</p>
+
+
+<section class="sheet" id="front" hidden>
+    <p class="title"><b>Накладна від “<span class="f" data-f="day"></span>” <span class="f wide" data-f="month"></span> <span class="f" data-f="year"></span> р.</b><span class="num" data-f="number"></span></p>
+    <p>На приймання офісної техніки в ремонт або обслуговування від організації: <span class="f line" data-f="company"></span></p>
+    <p class="one_line">Код ЄДРПОУ: <span class="f line short" data-f="edrpou"></span> Номер телефону: <span class="f line phone" data-f="phone"></span></p>
+    <p>Відповідальна особа: <span class="f line" data-f="person"></span></p>
+    <p>Перелік техніки:</p>
+    <p class="devices" id="devices">
+        <span class="box" data-device="copier">Коп. апарат</span>
+        <span class="box" data-device="printer">Принтер</span>
+        <span class="box" data-device="shredder">Знищувач</span>
+        <span class="box" data-device="plotter">Плотер</span>
+        <span class="box" data-device="other">Інше<span class="f other" data-f="other"></span>.</span>
+    </p>
+    <p class="just">Модель: <span class="f line" data-f="model"></span></p>
+    <p class="small_gap"></p>
+    <p class="center"><b>Роботи, комплектуючі та витратні матеріали:</b></p>
+    <table class="grid">
+        <thead><tr><th>Найменування</th><th>Номер</th><th>Кількість</th><th>Ціна</th></tr></thead>
+        <tbody id="partsRows"></tbody>
+    </table>
+    <p class="s13">Месенджер: <span class="pick" data-m="Viber">Viber</span> / <span class="pick" data-m="Telegram">Telegram</span> / <span class="pick" data-m="WhatsApp">WhatsApp</span> / <span class="pick" data-m="немає">немає</span></p>
+    <p class="s13">Техніку прийнято на ремонт у комплектації та зовнішньому стані, зазначених у цьому документі. З умовами зберігання на звороті ознайомлений(-а) і згоден(-на).</p>
+    <table class="sign s13">
+        <tr><td>Замовник</td><td>Представник СЦ</td></tr>
+        <tr><td>ПІБ: <span class="f line" data-f="person_sign"></span></td><td>Посада, ПІБ: <span class="f line" data-f="staff"></span></td></tr>
+        <tr><td>Підпис: <span class="line blank"></span></td><td>Підпис: <span class="line blank"></span></td></tr>
+    </table>
+    <p class="s13">Дата: «<span class="f" data-f="day"></span>» <span class="f" data-f="month"></span> <span class="f" data-f="year"></span> р.</p>
+</section>
+
+
+<section class="sheet" id="back" hidden>
+    <p class="center"><b>УВАГА! УМОВИ ЗБЕРІГАННЯ ГОТОВОЇ ТЕХНІКИ</b></p>
+    <div class="terms s12">
+        <p><b>1.</b> ПП «Омега-Принт» (далі — СЦ) повідомляє Замовника про готовність техніки в месенджер (Viber/Telegram/WhatsApp), SMS або дзвінком на номер, вказаний у цьому документі. Датою повідомлення є дата відправлення, незалежно від прочитання.</p>
+        <p><b>2.</b> Замовник зобов'язаний забрати техніку та сплатити роботи й запчастини протягом 5 робочих днів з дати повідомлення.</p>
+        <p><b>3.</b> З 6-го робочого дня нараховується плата за зберігання: 50 грн/добу — малогабаритна техніка (біндери, ламінатори, принтери А4); 100 грн/добу — великогабаритна (принтери/БФП А3 і більше).</p>
+        <p><b>4.</b> Якщо техніку не забрано протягом 2 місяців з дати повідомлення, СЦ надсилає письмове попередження в месенджер на номер із п. 1. Якщо протягом 10 календарних днів з його відправлення техніку не забрано, вона вважається невитребуваною, і СЦ має право реалізувати її в рахунок вартості робіт, запчастин та плати за зберігання. Залишок коштів повертається Замовнику за вимогою.</p>
+        <p><b>5.</b> До повного розрахунку СЦ має право притримувати техніку.</p>
+        <p><b>6.</b> Підписом Замовник підтверджує, що вказаний номер використовується ним у месенджерах, а повідомлення на нього вважаються належними.</p>
+    </div>
+    <p class="center"><b>ВИДАЧА ТЕХНІКИ ПІСЛЯ РЕМОНТУ</b></p>
+    <p class="s12">Техніку отримано в комплектації та стані, що відповідають цьому документу. Роботи та запчастини на суму <span class="f line short" data-f="total"></span> грн прийнято, розрахунок здійснено в повному обсязі. Претензій щодо комплектності та зовнішнього вигляду не маю. Гарантійні умови роз'яснено.</p>
+    <table class="sign s12">
+        <tr><td>Замовник / отримувач<br><span class="note">(за довіреністю: документ)</span></td><td>Представник СЦ</td></tr>
+        <tr><td>ПІБ: <span class="f line" data-f="receiver"></span></td><td>Посада, ПІБ: <span class="f line" data-f="staff"></span></td></tr>
+        <tr><td>Підпис: <span class="line blank"></span></td><td>Підпис: <span class="line blank"></span></td></tr>
+    </table>
+    <p class="s14">Дата: «<span class="f" data-f="out_day"></span>» <span class="f" data-f="out_month"></span> <span class="f" data-f="out_year"></span> р.</p>
+</section>
+
+<script src="nakladna.js?v=4"></script>
+</body>
+</html>
